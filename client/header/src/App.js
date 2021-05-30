@@ -10,7 +10,6 @@ import search from "./assets/검색창.png";
 
 const Purple_header = styled.div` // 제일 위 팝업
 margin-top:0px;
-color:white; // 글씨색
 align-content:flex-end;
 text-align: center;
 padding-top:12.5px;
