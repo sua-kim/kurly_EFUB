@@ -1,11 +1,15 @@
 package com.efub.kurlyclone.domain.event;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity(name = "event")
-@Data
+@Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table (name = "event")
 public class Event {
 
     @Id
@@ -18,6 +22,11 @@ public class Event {
 
     @Column(name="event_descript")
     private String descript;
+
+    public Event(Long Id, String name, String descript) {
+        this.descript = descript;
+        this.name = name;
+    }
 
 
 
