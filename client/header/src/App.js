@@ -98,6 +98,7 @@ outline:none;
 const Menu = styled.div` // 메인메뉴
 display:flex;
 flex-direction:row;
+justify-content: center;
 width:100%;
 height:50px;
 margin-top:3px;
@@ -106,7 +107,6 @@ const 카테고리아이콘= styled.image` // 카테고리 로고
 display: flex;
 flex-direction: column;
 align-items:left;
-margin-left: 334px;
 margin-top: 25px;
 background: white;
 border: none;
@@ -175,7 +175,7 @@ const GoodsList = styled.div`
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Purple_header> 
       <알림> 인기 제품 100원과 내 맘대로 무료배송 받으러 가기 > </알림>
       <엑스> x </엑스> 
