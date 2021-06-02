@@ -17,6 +17,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final FileHandler fileHandler;
 
+    @Transactional
     public ProductResponseDto findById(Long id){
         Product entity = productRepository.getById(id);
         return new ProductResponseDto(entity);
