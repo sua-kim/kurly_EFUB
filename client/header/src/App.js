@@ -1,5 +1,8 @@
 import './App.css';
 import styled from "styled-components";
+import { useState } from "react";
+import axios from "axios";
+
 import logo from "./assets/kurly.png";
 import place from "./assets/place.png";
 import shopping from "./assets/shopping.png";
@@ -7,7 +10,10 @@ import center from "./assets/center.png";
 import delivery from "./assets/샛별배송.png";
 import cartegory from "./assets/cartegory.png";
 import search from "./assets/검색창.png";
+import advertising from "./assets/advertising.png";
+
 import Product from './component/product';
+
 
 const Purple_header = styled.div` // 제일 위 팝업
 margin-top:0px;
@@ -153,6 +159,15 @@ background: white;
 border: none;
 outline:none;
 `
+const ImageSlide = styled.image` // 광고이미지 슬라이드
+display: flex;
+flex-direction: column;
+margin-top: 10px;
+background: white;
+border: none;
+outline:none;
+width: 100%;
+`
 
 const GoodsRecommend = styled.div`
     margin-top: 87px;
@@ -193,7 +208,7 @@ function App() {
       <Logo><img src={logo} /></Logo>
 
       <Menu> 
-        <카테고리아이콘><img src={cartegory} /></카테고리아이콘> 
+        <카테고리아이콘><img s                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       rc={cartegory} /></카테고리아이콘> 
         <카테고리> 전체 카테고리</카테고리>
         <메뉴이름> 신상품 </메뉴이름>
         <메뉴이름> 베스트 </메뉴이름>
@@ -203,6 +218,8 @@ function App() {
         <메뉴아이콘> <img src={place} /> </메뉴아이콘>
         <메뉴아이콘> <img src={shopping} /> </메뉴아이콘>
       </Menu>
+
+      <ImageSlide><img src={advertising}/></ImageSlide>
 
       <GoodsRecommend>
               <Title><div className = "recommend">이 상품 어때요?</div></Title>
