@@ -1,8 +1,5 @@
 import './App.css';
 import styled from "styled-components";
-import { useState } from "react";
-import axios from "axios";
-
 import logo from "./assets/kurly.png";
 import place from "./assets/place.png";
 import shopping from "./assets/shopping.png";
@@ -11,7 +8,6 @@ import delivery from "./assets/샛별배송.png";
 import cartegory from "./assets/cartegory.png";
 import search from "./assets/검색창.png";
 import advertising from "./assets/advertising.png";
-
 import Product from './component/product';
 
 
