@@ -1,8 +1,5 @@
 import './App.css';
 import styled from "styled-components";
-import { useState } from "react";
-import axios from "axios";
-
 import logo from "./assets/kurly.png";
 import place from "./assets/place.png";
 import shopping from "./assets/shopping.png";
@@ -11,6 +8,8 @@ import delivery from "./assets/샛별배송.png";
 import cartegory from "./assets/cartegory.png";
 import search from "./assets/검색창.png";
 import advertising from "./assets/advertising.png";
+import Product from './component/product';
+
 
 const Purple_header = styled.div` // 제일 위 팝업
 margin-top:0px;
@@ -101,6 +100,7 @@ outline:none;
 const Menu = styled.div` // 메인메뉴
 display:flex;
 flex-direction:row;
+justify-content: center;
 width:100%;
 height:50px;
 margin-top:3px;
@@ -109,7 +109,6 @@ const 카테고리아이콘= styled.image` // 카테고리 로고
 display: flex;
 flex-direction: column;
 align-items:left;
-margin-left: 334px;
 margin-top: 25px;
 background: white;
 border: none;
@@ -166,10 +165,28 @@ outline:none;
 width: 100%;
 `
 
+const GoodsRecommend = styled.div`
+    margin-top: 87px;
+    margin-bottom: 55px;
+`
+
+const Title = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+`
+
+const GoodsList = styled.div`
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 18px;
+`
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Purple_header> 
       <알림> 인기 제품 100원과 내 맘대로 무료배송 받으러 가기 > </알림>
       <엑스> x </엑스> 
@@ -200,8 +217,13 @@ function App() {
 
       <ImageSlide><img src={advertising}/></ImageSlide>
 
-      
-
+      <GoodsRecommend>
+              <Title><div className = "recommend">이 상품 어때요?</div></Title>
+              <GoodsList><Product /></GoodsList>
+              <GoodsList><Product /></GoodsList>
+              <GoodsList><Product /></GoodsList>
+              <GoodsList><Product /></GoodsList>
+      </GoodsRecommend>
 
     </div>
   );
