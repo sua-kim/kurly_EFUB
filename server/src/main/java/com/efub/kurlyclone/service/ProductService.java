@@ -6,14 +6,18 @@ import com.efub.kurlyclone.web.dto.ProductResponseDto;
 import com.efub.kurlyclone.web.dto.ProductSaveRequestDto;
 import com.efub.kurlyclone.web.dto.ProductUpdateDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class ProductService {
+
     private final ProductRepository productRepository;
     private final FileHandler fileHandler;
 
@@ -52,6 +56,33 @@ public class ProductService {
     @Transactional
     public void deleteProduct(Long id){
         productRepository.deleteById(id);
+    }
+
+    @Transactional
+    public List<Product> getRecommand() {
+        List<Product> all = productRepository.findAll();
+        Collections.shuffle(all);
+        List<Product> recommanded = all.subList(0, 4);
+
+        return recommanded;
+    }
+
+    @Transactional
+    public List<Product> findAll(){
+        List<Product> all = productRepository.findAll();
+        return all;
+    }
+
+    @Transactional
+    public List<Product> getSale() {
+        List<Product> saleProducts = productRepository.findProductsBySaleGreaterThan((float)0.2);
+        return saleProducts;
+    }
+
+    @Transactional
+    public List<Product> getMdChoice() {
+        List<Product> MdProducts = productRepository.findProductsByRecommendEquals(1);
+        return MdProducts;
     }
 
 }

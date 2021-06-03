@@ -1,13 +1,15 @@
 package com.efub.kurlyclone.web;
 
+import com.efub.kurlyclone.domain.product.Product;
 import com.efub.kurlyclone.service.ProductService;
 import com.efub.kurlyclone.web.dto.ProductResponseDto;
 import com.efub.kurlyclone.web.dto.ProductSaveRequestDto;
 import com.efub.kurlyclone.web.dto.ProductUpdateDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -16,6 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/product")
 public class ProductController {
     private final ProductService productService;
+
+    @GetMapping("")
+    public List<Product> getProductAll(){
+        return productService.findAll();
+    }
 
     @GetMapping("/{product_id}")
     public ProductResponseDto getProduct(@PathVariable Long product_id){
@@ -42,5 +49,20 @@ public class ProductController {
     public String deleteProduct(@PathVariable Long product_id){
         productService.deleteProduct(product_id);
         return "OK";
+    }
+
+    @GetMapping("/recommand")
+    public List<Product> getRecommand() {
+        return productService.getRecommand();
+    }
+
+    @GetMapping("/sale")
+    public List<Product> getSale() {
+        return productService.getSale();
+    }
+
+    @GetMapping("/md_choice")
+    public List<Product> getMdChoice() {
+        return productService.getMdChoice();
     }
 }
