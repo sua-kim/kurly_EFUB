@@ -2,9 +2,11 @@ package com.efub.kurlyclone.service;
 
 import com.efub.kurlyclone.domain.event.Event;
 import com.efub.kurlyclone.domain.event.EventRepository;
+import com.efub.kurlyclone.web.dto.EventResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -48,6 +50,17 @@ public class EventService {
         return "delete complete";
     }
 
+    public List<EventResponseDto> getEventList(){
+        List<Event> eventList = eventRepository.findAll();
+        List<EventResponseDto> eventResponseDtoList = new ArrayList<>();
+
+        for(Event event : eventList){
+            EventResponseDto eventResponseDto = new EventResponseDto(event);
+            eventResponseDtoList.add(eventResponseDto);
+        }
+
+        return eventResponseDtoList;
+    }
 
 
 }
