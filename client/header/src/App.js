@@ -170,9 +170,19 @@ const GoodsRecommend = styled.div`
     margin-bottom: 55px;
 `
 
+const GoodsRecommend_Gray = styled.div`
+    margin-top: 87px;
+    margin-bottom: 55px;
+    height:525px;
+    background-color: #E5E5E5;
+`
+
 const Title = styled.div`
     display: flex;
+    font-size: 24px;
+    padding-top: 60px;
     flex-direction: column;
+    vertical-align: middle;
     align-items: center;
     margin-bottom: 16px;
 `
@@ -181,6 +191,7 @@ const GoodsList = styled.div`
     display: inline-flex;
     flex-direction: row;
     align-items: center;
+    vertical-align: middle;
     margin-right: 18px;
 `
 
@@ -224,6 +235,13 @@ function App() {
               <GoodsList><Product /></GoodsList>
               <GoodsList><Product /></GoodsList>
       </GoodsRecommend>
+
+      <GoodsRecommend_Gray>
+              <Title><div className = "recommend">특가/혜택></div></Title>
+              <GoodsList><Product /></GoodsList>
+              <GoodsList><Product /></GoodsList>
+              <GoodsList><Product /></GoodsList>
+      </GoodsRecommend_Gray>
 
     </div>
   );
