@@ -1,5 +1,7 @@
 package com.efub.kurlyclone.service;
 
+import com.efub.kurlyclone.domain.category.Category;
+import com.efub.kurlyclone.domain.category.CategoryRepository;
 import com.efub.kurlyclone.domain.product.Product;
 import com.efub.kurlyclone.domain.product.ProductRepository;
 import com.efub.kurlyclone.web.dto.ProductResponseDto;
@@ -19,6 +21,7 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
     private final FileHandler fileHandler;
 
     @Transactional
@@ -59,7 +62,13 @@ public class ProductService {
     }
 
     @Transactional
-    public List<Product> getRecommand() {
+    public List<Product> findAll(){
+        List<Product> all = productRepository.findAll();
+        return all;
+    }
+
+    @Transactional
+    public List<Product> getRecommend() {
         List<Product> all = productRepository.findAll();
         Collections.shuffle(all);
         List<Product> recommanded = all.subList(0, 4);
@@ -68,21 +77,22 @@ public class ProductService {
     }
 
     @Transactional
-    public List<Product> findAll(){
-        List<Product> all = productRepository.findAll();
-        return all;
-    }
-
-    @Transactional
     public List<Product> getSale() {
-        List<Product> saleProducts = productRepository.findProductsBySaleGreaterThan((float)0.2);
+        List<Product> allSale = productRepository.findProductsBySaleGreaterThan((float)0.2);
+        Collections.shuffle(allSale);
+        List<Product> saleProducts = allSale.subList(0, 4);
         return saleProducts;
     }
 
     @Transactional
-    public List<Product> getMdChoice() {
-        List<Product> MdProducts = productRepository.findProductsByRecommendEquals(1);
-        return MdProducts;
+    public List<Product> getMdChoice(String category) {
+        Category cat = categoryRepository.findCategoryByName(category);
+        Long catnum = cat.getId();
+        List<Product> allMd = productRepository.findProductsByCategoryAndRecommendEquals( catnum,1);
+
+        Collections.shuffle(allMd);
+        List<Product> mdProducts = allMd.subList(0, 4);
+        return mdProducts;
     }
 
 }

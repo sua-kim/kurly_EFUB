@@ -8,6 +8,6 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository <Product, Long> {
 
     List<Product> findProductsBySaleGreaterThan(float num);
-    List<Product> findProductsByRecommendEquals(int b);
+    List<Product> findProductsByCategoryAndRecommendEquals(Long cat, int num);
 
 }

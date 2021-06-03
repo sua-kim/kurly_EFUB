@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RequiredArgsConstructor
@@ -51,9 +52,9 @@ public class ProductController {
         return "OK";
     }
 
-    @GetMapping("/recommand")
-    public List<Product> getRecommand() {
-        return productService.getRecommand();
+    @GetMapping("/recommend")
+    public List<Product> getRecommend() {
+        return productService.getRecommend();
     }
 
     @GetMapping("/sale")
@@ -62,7 +63,7 @@ public class ProductController {
     }
 
     @GetMapping("/md_choice")
-    public List<Product> getMdChoice() {
-        return productService.getMdChoice();
+    public List<Product> getMdChoice(@RequestBody String cat) {
+        return productService.getMdChoice(cat);
     }
 }
