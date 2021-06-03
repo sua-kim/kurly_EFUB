@@ -1,11 +1,12 @@
 package com.efub.kurlyclone.domain.event;
 
+import com.efub.kurlyclone.domain.product.Product;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,6 +24,11 @@ public class Event {
     @Column(name="event_descript")
     private String descript;
 
+    @JoinColumn(name="event")
+    @OneToMany
+    private List<Product> productList;
+
+    @Builder
     public Event(Long Id, String name, String descript) {
         this.descript = descript;
         this.name = name;
