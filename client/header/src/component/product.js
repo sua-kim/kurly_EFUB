@@ -50,18 +50,8 @@ function Product({path}) {
     const [data, product] = useState();
     useEffect(async () => {
             try {
-                if (path === 'http://localhost:8080/api/product/md_choice') {
-                    const response = await axios({
-                        method: "get",
-                        url: path,
-                        body: "채소"
-                    }).then(() => console.log("error"));
-                    console.log(response)
-                    product(response.data);
-                } else {
-                    const response = await axios.get(path);
-                    product(response.data);
-                }
+                const response = await axios.get(path);
+                product(response.data);
             } catch (e) {
                 console.log(e)
             }

@@ -191,6 +191,14 @@ const Eventtitle = styled.div`
     margin-bottom: 16px;
 `
 
+const GoodsList = styled.div`
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    vertical-align: middle;
+    margin-right: 18px;
+`
+
 const Goods = styled.div`
     display: inline-flex;
     flex-direction: column;
@@ -303,7 +311,7 @@ function App() {
       <div style = {{"display": "flex", "justify-content": "center"}}><Banner><img src= {banner} /></Banner></div>
       <Title><div className = "mdRecommend">MD의 추천</div></Title>
       <TagCategory />
-      <Product path={`http://localhost:8080/api/product/md_choice`} />
+      <Product path={`http://localhost:8080/api/product/md_choice/간식·과자·떡`} />
       <div style = {{"display": "flex", "justify-content": "center"}}><ViewAll>간식 과자 떡 전체보기 ></ViewAll></div>
     </div>
   );
