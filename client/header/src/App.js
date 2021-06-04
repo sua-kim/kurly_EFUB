@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+// load image
 import logo from "./assets/kurly.png";
 import place from "./assets/place.png";
 import shopping from "./assets/shopping.png";
@@ -11,8 +12,11 @@ import delivery from "./assets/샛별배송.png";
 import cartegory from "./assets/cartegory.png";
 import search from "./assets/검색창.png";
 import advertising from "./assets/advertising.png";
-import Product from './component/product';
+import banner from "./asset/sale_banner.svg"
 
+// load component
+import Product from './component/product';
+import TagCategory from "./component/TagCategory";
 
 const Purple_header = styled.div` // 제일 위 팝업
 margin-top:0px;
@@ -55,9 +59,7 @@ margin-top:3px;
 `
 const 새벽배송 = styled.button`
 font-size: 12px;
-margin-left: 300px;
-margin-top: 0px;
-background: white;
+margin-left: 300px; 
 border: none;
 outline:none;
 `
@@ -172,7 +174,6 @@ const GoodsRecommend = styled.div`
     margin-top: 87px;
     margin-bottom: 55px;
 `
-
 const GoodsRecommend_Gray = styled.div`
     margin-top: 87px;
     margin-bottom: 55px;
@@ -180,7 +181,7 @@ const GoodsRecommend_Gray = styled.div`
     background-color: #E5E5E5;
 `
 
-const Title = styled.div`
+const Eventtitle = styled.div`
     display: flex;
     font-size: 24px;
     padding-top: 60px;
@@ -214,6 +215,34 @@ const Goods = styled.div`
     background-size: 180px;
   `
 
+
+const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+`
+
+const Banner = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: 901px; height: 125px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`
+
+const ViewAll = styled.div`
+  display: inline-flex;
+  align-items: center;
+  width: 435px; height: 50px;
+  border: 1px solid #E1E1E1;
+  box-sizing: border-box;
+  margin-top: 30px; margin-bottom: 30px;
+  padding-top: 12px; padding-bottom: 10px;
+  padding-left: 138px; padding-right: 100px;
+`
+
 function App() {
   const [data, setData] = useState();
     useEffect(async () => {
@@ -229,11 +258,11 @@ function App() {
 
   return (
     <div className="App">
-      <Purple_header> 
+      <Purple_header>
       <알림> 인기 제품 100원과 내 맘대로 무료배송 받으러 가기 > </알림>
-      <엑스> x </엑스> 
+      <엑스> x </엑스>
       </Purple_header>
-      <Header> 
+      <Header>
         <새벽배송> <img src={delivery} /></새벽배송>
         <회원가입>회원가입</회원가입>
         <Button>|</Button>
@@ -245,14 +274,14 @@ function App() {
 
       <Logo><img src={logo} /></Logo>
 
-      <Menu> 
-        <카테고리아이콘><img s                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       rc={cartegory} /></카테고리아이콘> 
+      <Menu>
+        <카테고리아이콘><img s                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       rc={cartegory} /></카테고리아이콘>
         <카테고리> 전체 카테고리</카테고리>
         <메뉴이름> 신상품 </메뉴이름>
         <메뉴이름> 베스트 </메뉴이름>
         <메뉴이름> 알뜰쇼핑 </메뉴이름>
         <메뉴이름> 특가/혜택 </메뉴이름>
-        <검색창> <img src= {search} /> </검색창> 
+        <검색창> <img src= {search} /> </검색창>
         <메뉴아이콘> <img src={place} /> </메뉴아이콘>
         <메뉴아이콘> <img src={shopping} /> </메뉴아이콘>
       </Menu>
@@ -268,18 +297,31 @@ function App() {
       </GoodsRecommend>
 
       <GoodsRecommend_Gray>
-        <Title><div className = "recommend">특가/혜택></div></Title>
+        <Eventtitle><div className = "recommend">특가/혜택></div></Eventtitle>
         {data?.map((event, i) =>
             <GoodsList>
               <Goods>
-                <Profile src={event.image}></Profile>
+                <img src={"http://localhost:8080/"+ event.image}/>
                 <h3 style={{ margin: "3px" }}>{event.event_name}</h3>
                 <h3 style={{ color: "Gray", margin: "3px" }}>{event.event_description}</h3>
               </Goods>
             </GoodsList>)}
-
       </GoodsRecommend_Gray>
 
+
+      <Title><div className = "recommend">놓치면 후회할 가격 > </div></Title>
+      <GoodsList><Product /></GoodsList>
+      <GoodsList><Product /></GoodsList>
+      <GoodsList><Product /></GoodsList>
+      <GoodsList><Product /></GoodsList>
+      <div style = {{"display": "flex", "justify-content": "center"}}><Banner><img src= {banner} /></Banner></div>
+      <Title><div className = "mdRecommend">MD의 추천</div></Title>
+      <TagCategory />
+      <GoodsList><Product /></GoodsList>
+      <GoodsList><Product /></GoodsList>
+      <GoodsList><Product/></GoodsList>
+      <GoodsList><Product /></GoodsList>
+      <div style = {{"display": "flex", "justify-content": "center"}}><ViewAll>간식 과자 떡 전체보기 ></ViewAll></div>
     </div>
   );
 }
