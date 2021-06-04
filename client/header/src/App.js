@@ -1,5 +1,7 @@
 import './App.css';
 import styled from "styled-components";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 // load image
 import logo from "./assets/kurly.png";
@@ -57,9 +59,7 @@ margin-top:3px;
 `
 const 새벽배송 = styled.button`
 font-size: 12px;
-margin-left: 300px;
-margin-top: 0px;
-background: white;
+margin-left: 300px; 
 border: none;
 outline:none;
 `
@@ -174,7 +174,39 @@ const GoodsRecommend = styled.div`
     margin-top: 87px;
     margin-bottom: 55px;
 `
+const GoodsRecommend_Gray = styled.div`
+    margin-top: 87px;
+    margin-bottom: 55px;
+    height:525px;
+    background-color: #E5E5E5;
+`
 
+const Eventtitle = styled.div`
+    display: flex;
+    font-size: 24px;
+    padding-top: 60px;
+    flex-direction: column;
+    vertical-align: middle;
+    align-items: center;
+    margin-bottom: 16px;
+`
+
+const Goods = styled.div`
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin-right: 10px;
+`
+  const EventImage = styled.image`
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 0px;
+    height: 230px;
+    width: 180px;
+    background: url(${(props) => props.src});
+    background-size: 180px;
+  `
 
 const Title = styled.div`
   display: flex;
@@ -204,6 +236,18 @@ const ViewAll = styled.div`
 `
 
 function App() {
+  const [data, setData] = useState();
+    useEffect(async () => {
+        const ID = window.localStorage.getItem('ID');
+        try {
+            const response = await axios.get(`http://localhost:8080/api/event/list`);
+            setData(response.data);
+            console.log(response.data);
+
+        } catch (e) { console.log("error") }
+    }, []
+    )
+
   return (
     <div className="App">
       <Purple_header>
@@ -240,6 +284,20 @@ function App() {
               <Title><div className = "recommend">이 상품 어때요?</div></Title>
               <Product path={`http://localhost:8080/api/product/recommend`} />
       </GoodsRecommend>
+
+      <GoodsRecommend_Gray>
+        <Eventtitle><div className = "recommend">특가/혜택></div></Eventtitle>
+        {data?.map((event, i) =>
+            <GoodsList>
+              <Goods>
+                <EventImage src={"http://localhost:8080/"+ event.image}></EventImage>
+                <h3 style={{ margin: "3px" }}>{event.event_name}</h3>
+                <h3 style={{ color: "Gray", margin: "3px" }}>{event.event_description}</h3>
+              </Goods>
+            </GoodsList>)}
+      </GoodsRecommend_Gray>
+
+
       <Title><div className = "recommend">놓치면 후회할 가격 > </div></Title>
       <Product path={`http://localhost:8080/api/product/sale`} />
       <div style = {{"display": "flex", "justify-content": "center"}}><Banner><img src= {banner} /></Banner></div>
