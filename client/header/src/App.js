@@ -1,5 +1,8 @@
 import './App.css';
 import styled from "styled-components";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 import logo from "./assets/kurly.png";
 import place from "./assets/place.png";
 import shopping from "./assets/shopping.png";
@@ -194,8 +197,36 @@ const GoodsList = styled.div`
     vertical-align: middle;
     margin-right: 18px;
 `
+const Goods = styled.div`
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin-right: 10px;
+`
+  const Profile = styled.image`
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #646568;
+    height: 250px;
+    width: 250px;
+    background: url(${(props) => props.src});
+    background-size: 180px;
+  `
 
 function App() {
+  const [data, setData] = useState();
+    useEffect(async () => {
+        const ID = window.localStorage.getItem('ID');
+        try {
+            const response = await axios.get(`http://localhost:8080/api/event/list`);
+            setData(response.data);
+            console.log(response.data);
+
+        } catch (e) { console.log("error") }
+    }, []
+    )
+
   return (
     <div className="App">
       <Purple_header> 
@@ -237,10 +268,16 @@ function App() {
       </GoodsRecommend>
 
       <GoodsRecommend_Gray>
-              <Title><div className = "recommend">특가/혜택></div></Title>
-              <GoodsList><Product /></GoodsList>
-              <GoodsList><Product /></GoodsList>
-              <GoodsList><Product /></GoodsList>
+        <Title><div className = "recommend">특가/혜택></div></Title>
+        {data?.map((event, i) =>
+            <GoodsList>
+              <Goods>
+                <Profile src={event.image}></Profile>
+                <h3 style={{ margin: "3px" }}>{event.event_name}</h3>
+                <h3 style={{ color: "Gray", margin: "3px" }}>{event.event_description}</h3>
+              </Goods>
+            </GoodsList>)}
+
       </GoodsRecommend_Gray>
 
     </div>
