@@ -177,8 +177,8 @@ const GoodsRecommend = styled.div`
 const GoodsRecommend_Gray = styled.div`
     margin-top: 87px;
     margin-bottom: 55px;
-    height:525px;
-    background-color: #E5E5E5;
+    height:470px;
+    background-color: #EEEEEE;
 `
 
 const Eventtitle = styled.div`
@@ -211,6 +211,7 @@ const Goods = styled.div`
     margin-right: 0px;
     height: 230px;
     width: 180px;
+    object-fit: cover;
     background: url(${(props) => props.src});
     background-size: 180px;
   `
@@ -302,8 +303,8 @@ function App() {
             <GoodsList>
               <Goods>
                 <EventImage src={"http://localhost:8080/"+ event.image}></EventImage>
-                <h3 style={{ margin: "3px" }}>{event.event_name}</h3>
-                <h3 style={{ color: "Gray", margin: "3px" }}>{event.event_description}</h3>
+                <h5 style={{ margin: "3px" }}>{event.event_name}</h5>
+                <h6 style={{ color: "Gray", margin: "3px" }}>{event.event_description}</h6>
               </Goods>
             </GoodsList>)}
       </GoodsRecommend_Gray>
