@@ -1,17 +1,14 @@
 import React from 'react';
+import './product.css';
 import styled from "styled-components";
-import image from '../image 24.svg';
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
 const GoodsList = styled.div`
-    margin-right: 18px;
-    
+    margin-right: 18px; 
 `
 
 const Image = styled.div`
-  width: 212px;
-  height: 272px;
   margin-bottom: 16px;
 `
 
@@ -53,9 +50,18 @@ function Product({path}) {
     const [data, product] = useState();
     useEffect(async () => {
             try {
-                const response = await axios.get(path, {params: '채소'});
-                product(response.data);
-
+                if (path === 'http://localhost:8080/api/product/md_choice') {
+                    const response = await axios({
+                        method: "get",
+                        url: path,
+                        body: "채소"
+                    }).then(() => console.log("error"));
+                    console.log(response)
+                    product(response.data);
+                } else {
+                    const response = await axios.get(path);
+                    product(response.data);
+                }
             } catch (e) {
                 console.log(e)
             }
@@ -68,11 +74,10 @@ function Product({path}) {
                 if (i <= 3)
                 return(
                     <GoodsList>
-                        <Image><img src={image} /></Image>
+                        <Image><img className="productImg" src={"http://localhost:8080/"+product.product_image} /></Image>
                         <GoodsDetail>
                             <Name>{product.product_name}</Name>
-                                {
-                                    (()=>{
+                                {(()=>{
                                         if(product.sale!==0.0){
                                             return (
                                                 <div>
@@ -90,9 +95,7 @@ function Product({path}) {
                                                 </SalePrice>
                                             )
                                         }
-                                    })()
-                                }
-
+                                    })()}
                         </GoodsDetail>
                     </GoodsList>);
                 }
