@@ -205,12 +205,12 @@ const Goods = styled.div`
     vertical-align: middle;
     margin-right: 10px;
 `
-  const Profile = styled.image`
+  const EventImage = styled.image`
     margin-top: 20px;
     margin-bottom: 20px;
-    border: 2px solid #646568;
-    height: 250px;
-    width: 250px;
+    margin-right: 0px;
+    height: 230px;
+    width: 180px;
     background: url(${(props) => props.src});
     background-size: 180px;
   `
@@ -301,7 +301,7 @@ function App() {
         {data?.map((event, i) =>
             <GoodsList>
               <Goods>
-                <img src={"http://localhost:8080/"+ event.image}/>
+                <EventImage src={"http://localhost:8080/"+ event.image}></EventImage>
                 <h3 style={{ margin: "3px" }}>{event.event_name}</h3>
                 <h3 style={{ color: "Gray", margin: "3px" }}>{event.event_description}</h3>
               </Goods>
