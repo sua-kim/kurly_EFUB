@@ -58,7 +58,7 @@ height:50px;
 margin-top:3px;
 `
 const 새벽배송 = styled.button`
-font-size: 12px;
+background: white;
 margin-left: 300px; 
 border: none;
 outline:none;
