@@ -198,6 +198,7 @@ const GoodsList = styled.div`
     vertical-align: middle;
     margin-right: 18px;
 `
+
 const Goods = styled.div`
     display: inline-flex;
     flex-direction: column;
@@ -215,7 +216,6 @@ const Goods = styled.div`
     background: url(${(props) => props.src});
     background-size: 180px;
   `
-
 
 const Title = styled.div`
   display: flex;
@@ -291,10 +291,7 @@ function App() {
 
       <GoodsRecommend>
               <Title><div className = "recommend">이 상품 어때요?</div></Title>
-              <GoodsList><Product /></GoodsList>
-              <GoodsList><Product /></GoodsList>
-              <GoodsList><Product /></GoodsList>
-              <GoodsList><Product /></GoodsList>
+              <Product path={`http://localhost:8080/api/product/recommend`} />
       </GoodsRecommend>
 
       <GoodsRecommend_Gray>
@@ -311,17 +308,11 @@ function App() {
 
 
       <Title><div className = "recommend">놓치면 후회할 가격 > </div></Title>
-      <GoodsList><Product /></GoodsList>
-      <GoodsList><Product /></GoodsList>
-      <GoodsList><Product /></GoodsList>
-      <GoodsList><Product /></GoodsList>
+      <Product path={`http://localhost:8080/api/product/sale`} />
       <div style = {{"display": "flex", "justify-content": "center"}}><Banner><img src= {banner} /></Banner></div>
       <Title><div className = "mdRecommend">MD의 추천</div></Title>
       <TagCategory />
-      <GoodsList><Product /></GoodsList>
-      <GoodsList><Product /></GoodsList>
-      <GoodsList><Product/></GoodsList>
-      <GoodsList><Product /></GoodsList>
+      <Product path={`http://localhost:8080/api/product/md_choice/간식·과자·떡`} />
       <div style = {{"display": "flex", "justify-content": "center"}}><ViewAll>간식 과자 떡 전체보기 ></ViewAll></div>
     </div>
   );
