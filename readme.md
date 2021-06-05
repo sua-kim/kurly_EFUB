@@ -1,6 +1,7 @@
-## 🧑‍💻 EFUB 8th Assignment
-### team 4 - Kurly clone coding
-#### client 작업 진행
+## EFUB 8th Assignment
+
+### 🧑‍ team 4 - Kurly clone coding
+#### 💻 client 작업 진행 (21.05.29. ~ 06.05)
 
   ✅ 담당 ROLE
     -  이 상품 어때요?/놓치면 후회할 가격/MD의 추천 내 1x4 component 생성(component/product.js)
