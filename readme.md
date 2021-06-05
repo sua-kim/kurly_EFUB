@@ -1,4 +1,5 @@
-### EFUB team 4 - Kurly clone coding
+## 🧑‍💻 EFUB 8th Assignment
+### team 4 - Kurly clone coding
 #### client 작업 진행
 
   ✅ 담당 ROLE
